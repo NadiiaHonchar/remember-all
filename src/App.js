@@ -1,5 +1,11 @@
+import Section from "./Components/Section";
 function App() {
-  return <div>Hello</div>;
+  return (
+    <>
+      <Section title="First section" />
+      <Section title="Second section">Hello</Section>
+    </>
+  );
 }
 
 export default App;
