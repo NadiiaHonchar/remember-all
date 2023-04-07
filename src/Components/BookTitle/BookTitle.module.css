@@ -2,4 +2,5 @@
   margin-top: 0px;
   text-align: center;
   text-transform: uppercase;
+  color: var(--color-primary-text);
 }
