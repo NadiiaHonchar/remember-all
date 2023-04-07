@@ -7,13 +7,8 @@ export const ContactCard = ({ avatar, name, isOnline }) => {
   console.log("isOnline", isOnline);
   return (
     <div className={css.item}>
-      <FaTripadvisor className={css.icon} />
-      {isOnline ? (
-        <span className={css.statusTrue}></span>
-      ) : (
-        <span className={css.statusFalse}></span>
-      )}
-
+      <FaTripadvisor className={css.icon} size={25} />
+      <span className={css[isOnline]}></span>
       <img className={css.avatar} src={avatar} alt="User avatar" width="48" />
       <p className={css.name}>{name}</p>
     </div>

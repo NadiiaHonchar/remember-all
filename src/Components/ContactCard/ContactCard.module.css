@@ -5,14 +5,14 @@
   padding: 10px;
   align-items: center;
 }
-.statusTrue {
+.true {
   width: 25px;
   height: 25px;
   border-radius: 50%;
   background-color: var(--color-grin);
   margin-right: 25px;
 }
-.statusFalse {
+.false {
   width: 25px;
   height: 25px;
   border-radius: 50%;
@@ -28,7 +28,5 @@
   color: var(--color-secondary-text);
 }
 .icon {
-  width: 25px;
-  height: 25px;
   margin-right: 25px;
 }
