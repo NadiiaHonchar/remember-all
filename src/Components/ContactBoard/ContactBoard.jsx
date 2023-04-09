@@ -1,12 +1,12 @@
 import { ContactCard } from "components/ContactCard/ContactCard";
-import css from "./ContactBoard.module.css";
+import { Board } from "./ContactBoard.styled";
 
 export const ContactBoard = ({ events }) => {
   return (
-    <div className={css.contactBoard}>
+    <Board>
       {events.map(({ id, avatar, name, isOnline }) => (
         <ContactCard key={id} avatar={avatar} name={name} isOnline={isOnline} />
       ))}
-    </div>
+    </Board>
   );
 };

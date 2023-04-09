@@ -1,4 +1,4 @@
-import css from "./ContactCard.module.css";
+import { Item, Avatar, ItemName, IsOnlineLabel } from "./ContactCard.styled";
 import { FaTripadvisor } from "react-icons/fa";
 
 export const ContactCard = ({ avatar, name, isOnline }) => {
@@ -6,11 +6,12 @@ export const ContactCard = ({ avatar, name, isOnline }) => {
   console.log("name", name);
   console.log("isOnline", isOnline);
   return (
-    <div className={css.item}>
-      <FaTripadvisor className={css.icon} size={25} />
-      <span className={css[isOnline]}></span>
-      <img className={css.avatar} src={avatar} alt="User avatar" width="48" />
-      <p className={css.name}>{name}</p>
-    </div>
+    <Item>
+      <FaTripadvisor size={25} />
+      <IsOnlineLabel eventType={isOnline}></IsOnlineLabel>
+      {/* <span className={css[isOnline]}></span> */}
+      <Avatar src={avatar} alt="User avatar" />
+      <ItemName>{name}</ItemName>
+    </Item>
   );
 };

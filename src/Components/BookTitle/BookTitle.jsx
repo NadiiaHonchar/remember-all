@@ -1,4 +1,5 @@
-import css from "./BookTitle.module.css";
+import { Title } from "./BookTitle.styled";
+
 export const BookTitle = ({ text }) => {
-  return <h1 className={css.title}>{text}</h1>;
+  return <Title>{text}</Title>;
 };
