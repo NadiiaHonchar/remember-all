@@ -1,13 +1,17 @@
 import styled from "@emotion/styled";
 
 export const Item = styled.li`
-  border: 3px double var(--color-outline);
+  border: ${({ theme }) => `3px double ${theme.colors.outline}`};
   border-radius: 10px;
   display: flex;
   padding: 10px;
   align-items: center;
   svg {
     margin-right: 25px;
+  }
+  :hover,: focus, :active {
+    cursor: pointer;
+    border: ${({ theme }) => `3px double ${theme.colors.outlineHover}`};
   }
 `;
 
@@ -18,14 +22,16 @@ export const Avatar = styled.img`
 `;
 
 export const ItemName = styled.p`
-  color: var(--color-secondary-text);
+  color: ${({ theme }) => theme.colors.secondaryText};
 `;
+
+const setColor = ({ eventType, theme }) =>
+  eventType ? theme.colors.green : theme.colors.red;
 
 export const IsOnlineLabel = styled.span`
   width: 25px;
   height: 25px;
   border-radius: 50%;
   margin-right: 25px;
-  background-color: ${(props) =>
-    props.eventType ? "var(--color-grin)" : "var(--color-red)"};
+  background-color: ${setColor};
 `;
