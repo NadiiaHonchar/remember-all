@@ -10,7 +10,7 @@ export const App = () => {
       <Container>
         <BookTitle text="My contacts" />
         <ContactBoard events={friends} />
-        <Counter />
+        <Counter initialValue={0} />
       </Container>
     </>
   );
