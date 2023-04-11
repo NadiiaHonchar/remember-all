@@ -1,10 +1,6 @@
 import React from "react";
-import {
-  CounterWrapper,
-  CounterValue,
-  CounterControls,
-  CounterButton,
-} from "./Counter.styled";
+import { Controls } from "./Controls";
+import { CounterWrapper, CounterValue } from "./Counter.styled";
 export class Counter extends React.Component {
   static defaultProps = {
     initialValue: 10,
@@ -21,10 +17,10 @@ export class Counter extends React.Component {
     return (
       <CounterWrapper>
         <CounterValue>{this.state.value}</CounterValue>
-        <CounterControls>
-          <CounterButton onClick={this.handleIncrement}>+1</CounterButton>
-          <CounterButton onClick={this.handleDecrement}>-1</CounterButton>
-        </CounterControls>
+        <Controls
+          onIncrement={this.handleIncrement}
+          onDecrement={this.handleDecrement}
+        />
       </CounterWrapper>
     );
   }
