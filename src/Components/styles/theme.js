@@ -9,5 +9,6 @@ export const theme = {
     outlineHover: "#c4efc4",
     primaryText: "#212121",
     secondaryText: "#757575",
+    alternativeText: "#fff",
   },
 };

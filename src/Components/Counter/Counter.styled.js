@@ -1,11 +1,13 @@
 import styled from "@emotion/styled";
 
 export const CounterWrapper = styled.div`
-  width: 500px;
+  box-sizing: border-box;
+  width: 250px;
   margin: 0px auto;
   border: ${({ theme }) => `3px double ${theme.colors.outline}`};
   border-radius: 10px;
   padding: 10px;
+  margin-bottom: 10px;
   :hover,: focus, :active {
     cursor: pointer;
     border: ${({ theme }) => `3px double ${theme.colors.outlineHover}`};
