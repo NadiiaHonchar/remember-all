@@ -24,6 +24,17 @@ export class App extends Component {
     }));
   };
 
+  toggleCompleted = (todoId) => {
+    this.setState(({ todos }) => ({
+      todos: todos.map((todo) => {
+        if (todo.id === todoId) {
+          return { ...todo, completed: !todo.completed };
+        }
+        return todo;
+      }),
+    }));
+  };
+
   formSubmitHandler = ({ name, lastName }) => {
     console.log(name, lastName);
   };
@@ -43,7 +54,11 @@ export class App extends Component {
           <Dropdown />
           <div>Total number of tasks: {todos.length}</div>
           <div>The number of completed tasks: {completedTodos}</div>
-          <TodoList todos={todos} onDeleteTodo={this.deleteTodo} />
+          <TodoList
+            todos={todos}
+            onDeleteTodo={this.deleteTodo}
+            onToggleCompleted={this.toggleCompleted}
+          />
           <Form onSubmit={this.formSubmitHandler} />
         </Container>
       </>
