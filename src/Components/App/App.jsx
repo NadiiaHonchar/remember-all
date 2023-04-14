@@ -11,6 +11,7 @@ import { TodoList } from "components/TodoList";
 import { Container } from "./App.styled";
 import { Form } from "components/Form";
 import { TodoEditor } from "components/TodoEditor";
+import { Filter } from "components/Filter";
 
 export class App extends Component {
   state = {
@@ -20,11 +21,12 @@ export class App extends Component {
       { id: "id-3", text: "Todo3", completed: true },
       { id: "id-4", text: "Todo4", completed: false },
     ],
+    filter: "",
   };
 
   deleteTodo = (todoId) => {
-    this.setState((prevState) => ({
-      todos: prevState.todos.filter((todo) => todo.id !== todoId),
+    this.setState(({ todos }) => ({
+      todos: todos.filter((todo) => todo.id !== todoId),
     }));
   };
 
@@ -50,12 +52,16 @@ export class App extends Component {
     }));
   };
 
+  changeFilter = (e) => {
+    this.setState({ filter: e.currentTarget.value });
+  };
+
   formSubmitHandler = ({ name, lastName }) => {
     console.log(name, lastName);
   };
 
   render() {
-    const { todos } = this.state;
+    const { todos, filter } = this.state;
     const completedTodos = todos.reduce(
       (acc, todo) => (todo.completed ? acc + 1 : acc),
       0
@@ -75,6 +81,11 @@ export class App extends Component {
             onToggleCompleted={this.toggleCompleted}
           />
           <TodoEditor onSubmit={this.addTodo} />
+          <Filter value={filter} onChange={this.changeFilter} />
+          {/* <label>
+            Filter
+            <input type="text" value={filter} onChange={this.changeFilter} />
+          </label> */}
           <Form onSubmit={this.formSubmitHandler} />
         </Container>
       </>
