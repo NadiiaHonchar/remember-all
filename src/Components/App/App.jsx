@@ -1,12 +1,16 @@
+import { Component } from "react";
+import shortid from "shortid";
+
+import friends from "../../friends.json";
+
 import { BookTitle } from "components/BookTitle/BookTitle";
 import { ContactBoard } from "components/ContactBoard/ContactBoard";
 import { Counter } from "components/Counter/Counter";
 import { Dropdown } from "components/Dropdown/Dropdown";
 import { TodoList } from "components/TodoList";
 import { Container } from "./App.styled";
-import friends from "../../friends.json";
-import { Component } from "react";
 import { Form } from "components/Form";
+import { TodoEditor } from "components/TodoEditor";
 
 export class App extends Component {
   state = {
@@ -35,6 +39,17 @@ export class App extends Component {
     }));
   };
 
+  addTodo = (text) => {
+    const todo = {
+      id: shortid.generate(),
+      text,
+      completed: false,
+    };
+    this.setState((prevState) => ({
+      todos: [todo, ...prevState.todos],
+    }));
+  };
+
   formSubmitHandler = ({ name, lastName }) => {
     console.log(name, lastName);
   };
@@ -59,6 +74,7 @@ export class App extends Component {
             onDeleteTodo={this.deleteTodo}
             onToggleCompleted={this.toggleCompleted}
           />
+          <TodoEditor onSubmit={this.addTodo} />
           <Form onSubmit={this.formSubmitHandler} />
         </Container>
       </>
