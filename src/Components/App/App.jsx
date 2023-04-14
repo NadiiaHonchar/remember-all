@@ -56,16 +56,29 @@ export class App extends Component {
     this.setState({ filter: e.currentTarget.value });
   };
 
+  getVisibleTodos = () => {
+    const { todos, filter } = this.state;
+    const normalizedFilter = filter.toLocaleLowerCase();
+    return todos.filter((todo) =>
+      todo.text.toLocaleLowerCase().includes(normalizedFilter)
+    );
+  };
+
+  calculateCompletedTodos = () => {
+    const { todos } = this.state;
+    return todos.reduce((acc, todo) => (todo.completed ? acc + 1 : acc), 0);
+  };
+
   formSubmitHandler = ({ name, lastName }) => {
     console.log(name, lastName);
   };
 
   render() {
     const { todos, filter } = this.state;
-    const completedTodos = todos.reduce(
-      (acc, todo) => (todo.completed ? acc + 1 : acc),
-      0
-    );
+
+    const completedTodos = this.calculateCompletedTodos();
+    const visibleTodos = this.getVisibleTodos();
+
     return (
       <>
         <Container>
@@ -76,16 +89,12 @@ export class App extends Component {
           <div>Total number of tasks: {todos.length}</div>
           <div>The number of completed tasks: {completedTodos}</div>
           <TodoList
-            todos={todos}
+            todos={visibleTodos}
             onDeleteTodo={this.deleteTodo}
             onToggleCompleted={this.toggleCompleted}
           />
           <TodoEditor onSubmit={this.addTodo} />
           <Filter value={filter} onChange={this.changeFilter} />
-          {/* <label>
-            Filter
-            <input type="text" value={filter} onChange={this.changeFilter} />
-          </label> */}
           <Form onSubmit={this.formSubmitHandler} />
         </Container>
       </>
