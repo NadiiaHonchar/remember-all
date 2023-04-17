@@ -12,6 +12,7 @@ import { Container } from "./App.styled";
 import { Form } from "components/Form";
 import { TodoEditor } from "components/TodoEditor";
 import { Filter } from "components/Filter";
+import { LoginForm } from "components/LoginForm";
 
 export class App extends Component {
   state = {
@@ -96,6 +97,7 @@ export class App extends Component {
           <TodoEditor onSubmit={this.addTodo} />
           <Filter value={filter} onChange={this.changeFilter} />
           <Form onSubmit={this.formSubmitHandler} />
+          <LoginForm />
         </Container>
       </>
     );
