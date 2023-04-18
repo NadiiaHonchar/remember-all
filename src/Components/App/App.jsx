@@ -13,11 +13,30 @@ import { Form } from "components/Form";
 import { TodoEditor } from "components/TodoEditor";
 import { Filter } from "components/Filter";
 import { LoginForm } from "components/LoginForm";
+import { Modal } from "components/Modal/Modal";
 
 export class App extends Component {
   state = {
     todos: [],
     filter: "",
+    showModal: false,
+  };
+
+  componentDidMount() {
+    const parsTodos = JSON.parse(localStorage.getItem("todos"));
+    if (parsTodos) {
+      this.setState({ todos: parsTodos });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.todos !== prevState.todos) {
+      localStorage.setItem("todos", JSON.stringify(this.state.todos));
+    }
+  }
+
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({ showModal: !showModal }));
   };
 
   deleteTodo = (todoId) => {
@@ -69,18 +88,8 @@ export class App extends Component {
     console.log(name, lastName);
   };
 
-  componentDidMount() {
-    this.setState({ todos: JSON.parse(localStorage.getItem("todos")) });
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.todos !== prevState.todos) {
-      localStorage.setItem("todos", JSON.stringify(this.state.todos));
-    }
-  }
-
   render() {
-    const { todos, filter } = this.state;
+    const { todos, filter, showModal } = this.state;
 
     const completedTodos = this.calculateCompletedTodos();
     const visibleTodos = this.getVisibleTodos();
@@ -102,7 +111,17 @@ export class App extends Component {
           <TodoEditor onSubmit={this.addTodo} />
           <Filter value={filter} onChange={this.changeFilter} />
           <Form onSubmit={this.formSubmitHandler} />
-          <LoginForm />
+          <button type="button" onClick={this.toggleModal}>
+            Open modal
+          </button>
+          {showModal && (
+            <Modal onClose={this.toggleModal}>
+              <LoginForm />
+              <button type="button" onClick={this.toggleModal}>
+                Close modal
+              </button>
+            </Modal>
+          )}
         </Container>
       </>
     );
