@@ -16,12 +16,7 @@ import { LoginForm } from "components/LoginForm";
 
 export class App extends Component {
   state = {
-    todos: [
-      { id: "id-1", text: "Todo1", completed: false },
-      { id: "id-2", text: "Todo2", completed: false },
-      { id: "id-3", text: "Todo3", completed: true },
-      { id: "id-4", text: "Todo4", completed: false },
-    ],
+    todos: [],
     filter: "",
   };
 
@@ -73,6 +68,16 @@ export class App extends Component {
   formSubmitHandler = ({ name, lastName }) => {
     console.log(name, lastName);
   };
+
+  componentDidMount() {
+    this.setState({ todos: JSON.parse(localStorage.getItem("todos")) });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.todos !== prevState.todos) {
+      localStorage.setItem("todos", JSON.stringify(this.state.todos));
+    }
+  }
 
   render() {
     const { todos, filter } = this.state;
