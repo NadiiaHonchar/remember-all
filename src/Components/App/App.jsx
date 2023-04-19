@@ -15,6 +15,7 @@ import { Filter } from "components/Filter";
 import { LoginForm } from "components/LoginForm";
 import { Modal } from "components/Modal/Modal";
 import { Clock } from "components/Clock";
+import { Example } from "components/Exampe";
 
 export class App extends Component {
   state = {
@@ -98,7 +99,7 @@ export class App extends Component {
     return (
       <>
         <Container>
-          <Clock/>
+          <Clock />
           <BookTitle text="My contacts" />
           <ContactBoard events={friends} />
           <Counter initialValue={0} />
@@ -124,6 +125,7 @@ export class App extends Component {
               </button>
             </Modal>
           )}
+          <Example />
         </Container>
       </>
     );
