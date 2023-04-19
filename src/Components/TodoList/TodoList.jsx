@@ -1,15 +1,15 @@
-import { TodoItem, TodoText } from "./TodoList.styled";
+import { Todo } from "components/Todo/Todo";
+import { TodoItem } from "./TodoList.styled";
 export const TodoList = ({ todos, onDeleteTodo, onToggleCompleted }) => (
   <ul>
     {todos.map(({ id, text, completed }) => (
       <TodoItem key={id}>
-        <input
-          type="checkbox"
-          checked={completed}
-          onChange={() => onToggleCompleted(id)}
-        ></input>
-        <TodoText>{text}</TodoText>
-        <button onClick={() => onDeleteTodo(id)}>DEL</button>
+        <Todo
+          text={text}
+          completed={completed}
+          onToggleCompleted={() => onToggleCompleted(id)}
+          onDeleteTodo={() => onDeleteTodo()}
+        ></Todo>
       </TodoItem>
     ))}
   </ul>

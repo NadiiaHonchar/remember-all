@@ -7,7 +7,3 @@ export const TodoItem = styled.li`
   padding: 20px;
   border: ${({ theme }) => `3px double ${theme.colors.outline}`};
 `;
-
-export const TodoText = styled.p`
-  margin-right: 5px;
-`;
