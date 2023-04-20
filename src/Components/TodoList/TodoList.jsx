@@ -8,7 +8,7 @@ export const TodoList = ({ todos, onDeleteTodo, onToggleCompleted }) => (
           text={text}
           completed={completed}
           onToggleCompleted={() => onToggleCompleted(id)}
-          onDeleteTodo={() => onDeleteTodo()}
+          onDeleteTodo={() => onDeleteTodo(id)}
         ></Todo>
       </TodoItem>
     ))}
