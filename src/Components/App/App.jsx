@@ -18,12 +18,16 @@ import { Modal } from "components/Modal/Modal";
 import { Clock } from "components/Clock";
 import { Example } from "components/Exampe";
 import { Reader } from "components/Reader";
+import { PockemonForm } from "components/PockemonForm";
 
 export class App extends Component {
   state = {
     todos: [],
     filter: "",
     showModal: false,
+    pokemon: null,
+    loading: false,
+    pockemonName: "",
   };
 
   componentDidMount() {
@@ -31,6 +35,11 @@ export class App extends Component {
     if (parsTodos) {
       this.setState({ todos: parsTodos });
     }
+    this.setState({ loading: true });
+    fetch("https://pokeapi.co/api/v2/pokemon/venusaur")
+      .then((res) => res.json())
+      .then((pokemon) => this.setState({ pokemon }))
+      .finally(() => this.setState({ loading: false }));
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -92,6 +101,10 @@ export class App extends Component {
     console.log(name, lastName);
   };
 
+  handeSearchFormSubmit = (pockemonName) => {
+    this.setState({ pockemonName });
+  };
+
   render() {
     const { todos, filter, showModal } = this.state;
 
@@ -129,6 +142,9 @@ export class App extends Component {
           )}
           <Example />
           <Reader items={publications} />
+          {this.state.loading && <h2>Loading...</h2>}
+          {this.state.pokemon && <div>{this.state.pokemon.name}</div>}
+          <PockemonForm onSubmit={this.handeSearchFormSubmit} />
         </Container>
       </>
     );
