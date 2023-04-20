@@ -2,6 +2,7 @@ import { Component } from "react";
 import shortid from "shortid";
 
 import friends from "../../friends.json";
+import publications from "../publications.json";
 
 import { BookTitle } from "components/BookTitle/BookTitle";
 import { ContactBoard } from "components/ContactBoard/ContactBoard";
@@ -16,6 +17,7 @@ import { LoginForm } from "components/LoginForm";
 import { Modal } from "components/Modal/Modal";
 import { Clock } from "components/Clock";
 import { Example } from "components/Exampe";
+import { Reader } from "components/Reader";
 
 export class App extends Component {
   state = {
@@ -126,6 +128,7 @@ export class App extends Component {
             </Modal>
           )}
           <Example />
+          <Reader items={publications} />
         </Container>
       </>
     );
