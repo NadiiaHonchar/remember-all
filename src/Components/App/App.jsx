@@ -1,5 +1,7 @@
 import { Component } from "react";
 import shortid from "shortid";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import friends from "../../friends.json";
 import publications from "../publications.json";
@@ -19,6 +21,7 @@ import { Clock } from "components/Clock";
 import { Example } from "components/Exampe";
 import { Reader } from "components/Reader";
 import { PockemonForm } from "components/PockemonForm";
+import { PockemonInfo } from "components/PockemonInfo";
 
 export class App extends Component {
   state = {
@@ -114,6 +117,14 @@ export class App extends Component {
     return (
       <>
         <Container>
+          <ToastContainer
+            position="top-center"
+            autoClose={3000}
+            closeOnClick={false}
+            rtl={false}
+            pauseOnFocusLoss
+            pauseOnHover
+          />
           <Clock />
           <BookTitle text="My contacts" />
           <ContactBoard events={friends} />
@@ -145,6 +156,7 @@ export class App extends Component {
           {this.state.loading && <h2>Loading...</h2>}
           {this.state.pokemon && <div>{this.state.pokemon.name}</div>}
           <PockemonForm onSubmit={this.handeSearchFormSubmit} />
+          <PockemonInfo pockemonName={this.state.pockemonName} />
         </Container>
       </>
     );
