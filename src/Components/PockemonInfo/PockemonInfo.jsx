@@ -1,3 +1,4 @@
+import { PockemonErrorView } from "components/PockemonErrorView";
 import { Component } from "react";
 
 // =========================================
@@ -40,7 +41,7 @@ export class PockemonInfo extends Component {
     }
 
     if (status === "rejected") {
-      return <div>{error.message}</div>;
+      return <PockemonErrorView message={error.message} />;
     }
 
     if (status === "resolved") {
