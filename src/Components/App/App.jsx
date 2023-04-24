@@ -29,7 +29,6 @@ export class App extends Component {
     filter: "",
     showModal: false,
     pokemon: null,
-    loading: false,
     pockemonName: "",
   };
 
@@ -38,11 +37,6 @@ export class App extends Component {
     if (parsTodos) {
       this.setState({ todos: parsTodos });
     }
-    this.setState({ loading: true });
-    // fetch("https://pokeapi.co/api/v2/pokemon/venusaur")
-    //   .then((res) => res.json())
-    //   .then((pokemon) => this.setState({ pokemon }))
-    //   .finally(() => this.setState({ loading: false }));
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -153,7 +147,6 @@ export class App extends Component {
           )}
           <Example />
           <Reader items={publications} />
-          {this.state.loading && <h2>Loading...</h2>}
           {this.state.pokemon && <div>{this.state.pokemon.name}</div>}
           <PockemonForm onSubmit={this.handeSearchFormSubmit} />
           <PockemonInfo pockemonName={this.state.pockemonName} />
