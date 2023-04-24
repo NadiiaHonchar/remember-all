@@ -39,10 +39,10 @@ export class App extends Component {
       this.setState({ todos: parsTodos });
     }
     this.setState({ loading: true });
-    fetch("https://pokeapi.co/api/v2/pokemon/venusaur")
-      .then((res) => res.json())
-      .then((pokemon) => this.setState({ pokemon }))
-      .finally(() => this.setState({ loading: false }));
+    // fetch("https://pokeapi.co/api/v2/pokemon/venusaur")
+    //   .then((res) => res.json())
+    //   .then((pokemon) => this.setState({ pokemon }))
+    //   .finally(() => this.setState({ loading: false }));
   }
 
   componentDidUpdate(prevProps, prevState) {
