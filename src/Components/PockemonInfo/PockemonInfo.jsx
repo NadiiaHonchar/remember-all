@@ -1,3 +1,4 @@
+import { PockemonDataView } from "components/PockemonDataView";
 import { PockemonErrorView } from "components/PockemonErrorView";
 import { Component } from "react";
 
@@ -45,16 +46,7 @@ export class PockemonInfo extends Component {
     }
 
     if (status === "resolved") {
-      return (
-        <div>
-          <p>{pockemon.name}</p>
-          <img
-            src={pockemon.sprites.other["official-artwork"].front_shiny}
-            width={300}
-            alt={pockemon.name}
-          />
-        </div>
-      );
+      return <PockemonDataView pockemon={pockemon} />;
     }
   }
 }
