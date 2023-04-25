@@ -1,6 +1,8 @@
+import { ComponentPendingView } from "components/ComponentPendigView";
 import { PockemonDataView } from "components/PockemonDataView";
 import { PockemonErrorView } from "components/PockemonErrorView";
 import { Component } from "react";
+import { fetchPockemon } from "services";
 
 // =========================================
 // With state mashine
@@ -17,28 +19,21 @@ export class PockemonInfo extends Component {
     const { pockemonName } = this.props;
     if (prevProps.pockemonName !== pockemonName) {
       this.setState({ status: "pending" });
-      fetch(`https://pokeapi.co/api/v2/pokemon/${pockemonName}`)
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          }
-          return Promise.reject(
-            new Error(`There is no pokemon with the name ${pockemonName}`)
-          );
-        })
+      fetchPockemon(pockemonName)
         .then((pockemon) => this.setState({ pockemon, status: "resolved" }))
         .catch((error) => this.setState({ error, status: "rejected" }));
     }
   }
   render() {
     const { pockemon, error, status } = this.state;
+    const { pockemonName } = this.props;
 
     if (status === "idle") {
       return <div>Enter the Pokemon's name</div>;
     }
 
     if (status === "pending") {
-      return <div>Loading...</div>;
+      return <ComponentPendingView pockemonName={pockemonName} />;
     }
 
     if (status === "rejected") {
